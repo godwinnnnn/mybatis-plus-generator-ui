@@ -113,12 +113,12 @@ public class MbpGenerator {
     }
 
     private void configTemplate(TemplateConfig.Builder builder, List<String> choosedFileTypes, UserConfig userConfig) {
-        builder.entity(findTemplatePath(Constant.FILE_TYPE_ENTITY, userConfig));
-        builder.mapper(findTemplatePath(Constant.FILE_TYPE_MAPPER, userConfig));
-        builder.xml(findTemplatePath(Constant.FILE_TYPE_MAPPER_XML, userConfig));
-        builder.service(findTemplatePath(Constant.FILE_TYPE_SERVICE, userConfig));
-        builder.serviceImpl(findTemplatePath(Constant.FILE_TYPE_SERVICEIMPL, userConfig));
-        builder.controller(findTemplatePath(Constant.FILE_TYPE_CONTROLLER, userConfig));
+        builder.entity(findTemplatePath(Constant.FILE_TYPE_ENTITY, userConfig,generatorConfig.getTemplatePath()));
+        builder.mapper(findTemplatePath(Constant.FILE_TYPE_MAPPER, userConfig,generatorConfig.getTemplatePath()));
+        builder.xml(findTemplatePath(Constant.FILE_TYPE_MAPPER_XML, userConfig,generatorConfig.getTemplatePath()));
+        builder.service(findTemplatePath(Constant.FILE_TYPE_SERVICE, userConfig,generatorConfig.getTemplatePath()));
+        builder.serviceImpl(findTemplatePath(Constant.FILE_TYPE_SERVICEIMPL, userConfig,generatorConfig.getTemplatePath()));
+        builder.controller(findTemplatePath(Constant.FILE_TYPE_CONTROLLER, userConfig,generatorConfig.getTemplatePath()));
         if (!choosedFileTypes.contains(Constant.FILE_TYPE_ENTITY)) {
             builder.disable(TemplateType.ENTITY);
         }
@@ -334,8 +334,8 @@ public class MbpGenerator {
         return projectPathResolver.convertPackageToPath(Objects.requireNonNull(findFileConfigByType(fileType, userConfig)).getOutputLocation());
     }
 
-    private String findTemplatePath(String fileType, UserConfig userConfig) {
-        return Objects.requireNonNull(findFileConfigByType(fileType, userConfig)).getAvailableTemplatePath();
+    private String findTemplatePath(String fileType, UserConfig userConfig,String templatePath) {
+        return Objects.requireNonNull(findFileConfigByType(fileType, userConfig)).getAvailableTemplatePath(templatePath);
     }
 
 }

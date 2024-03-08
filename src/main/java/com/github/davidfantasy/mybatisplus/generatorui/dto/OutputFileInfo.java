@@ -2,6 +2,7 @@ package com.github.davidfantasy.mybatisplus.generatorui.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.github.davidfantasy.mybatisplus.generatorui.GeneratorConfig;
 import com.github.davidfantasy.mybatisplus.generatorui.common.ServiceException;
 import com.google.common.base.Strings;
 import lombok.Data;
@@ -38,22 +39,22 @@ public class OutputFileInfo {
     }
 
     @JsonIgnore
-    public String getAvailableTemplatePath() {
+    public String getAvailableTemplatePath(String templatePath) {
         if (!Strings.isNullOrEmpty(templatePath)) {
             return templatePath;
         }
         if (fileType.equals(FILE_TYPE_ENTITY)) {
-            return RESOURCE_PREFIX_CLASSPATH + "codetpls/entity.java.btl";
+            return RESOURCE_PREFIX_CLASSPATH + templatePath+"entity.java.btl";
         } else if (fileType.equals(FILE_TYPE_MAPPER)) {
-            return RESOURCE_PREFIX_CLASSPATH + "codetpls/mapper.java.btl";
+            return RESOURCE_PREFIX_CLASSPATH + templatePath+"mapper.java.btl";
         } else if (fileType.equals(FILE_TYPE_MAPPER_XML)) {
-            return RESOURCE_PREFIX_CLASSPATH + "codetpls/mapper.xml.btl";
+            return RESOURCE_PREFIX_CLASSPATH + templatePath+"mapper.xml.btl";
         } else if (fileType.equals(FILE_TYPE_SERVICE)) {
-            return RESOURCE_PREFIX_CLASSPATH + "codetpls/service.java.btl";
+            return RESOURCE_PREFIX_CLASSPATH + templatePath+"service.java.btl";
         } else if (fileType.equals(FILE_TYPE_SERVICEIMPL)) {
-            return RESOURCE_PREFIX_CLASSPATH + "codetpls/serviceImpl.java.btl";
+            return RESOURCE_PREFIX_CLASSPATH + templatePath+"serviceImpl.java.btl";
         } else if (fileType.equals(FILE_TYPE_CONTROLLER)) {
-            return RESOURCE_PREFIX_CLASSPATH + "codetpls/controller.java.btl";
+            return RESOURCE_PREFIX_CLASSPATH + templatePath+"controller.java.btl";
         }
         return "";
     }

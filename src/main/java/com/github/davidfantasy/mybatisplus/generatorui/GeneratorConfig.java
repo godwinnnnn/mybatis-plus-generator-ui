@@ -82,6 +82,11 @@ public class GeneratorConfig {
      */
     private IdType idType;
 
+    /**
+     * 自定义模板路径
+     */
+    private String templatePath;
+
     public NameConverter getAvailableNameConverter() {
         if (nameConverter == null) {
             nameConverter = new NameConverter() {
