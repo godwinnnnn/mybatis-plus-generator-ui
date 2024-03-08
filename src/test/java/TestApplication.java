@@ -12,7 +12,7 @@ public class TestApplication {
                 .port(8068)
                 .driverClassName("com.mysql.cj.jdbc.Driver")
                 .basePackage("com.github.davidfantasy.mybatisplus.generatorui.example")
-                .templatePath("matt/")
+//                .templatePath("matt/")
                 //数据库表前缀，生成entity名称时会去掉
                 .tablePrefix("t_")
                 .nameConverter(new NameConverter() {
@@ -23,7 +23,7 @@ public class TestApplication {
 
                     @Override
                     public String controllerNameConvert(String entityName) {
-                        return entityName + "Action";
+                        return entityName + "Controller";
                     }
                 })
                 .build();
